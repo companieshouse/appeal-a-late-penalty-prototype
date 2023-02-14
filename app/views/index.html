@@ -7,15 +7,113 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
+  <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">
-      {{ serviceName }}
+      {{serviceName}}
     </h1>
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+    <h2 class="govuk-heading-l">Prototype versions</h2>
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#v1">
+            Version 1
+          </a>
+        </li>
+      </ul>
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="v1">
+        <h2 class="govuk-heading-l">Version 1</h2>
+
+        <h3 class="govuk-heading-m">February 2023</h3>
+
+        <hr>
+
+        <h3 class="govuk-heading-m">Shortcuts</h3>
+        <h3 class="govuk-heading-s">Journey</h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="v1/start.html" class="govuk-link govuk-link--no-visited-state">Start</a>
+          </li>
+          <li>
+            <a href="v1/signin.html" class="govuk-link govuk-link--no-visited-state">Sign in</a>
+          </li>
+          <li>
+            <a href="v1/penalty-reference.html" class="govuk-link govuk-link--no-visited-state">Penalty reference</a>
+          </li>
+          <li>
+            <a href="v1/review-penalty.html" class="govuk-link govuk-link--no-visited-state">Review penalty</a>
+          </li>
+          <li>
+            <a href="v1/choose-reason.html" class="govuk-link govuk-link--no-visited-state">Choose reason</a>
+          </li>
+          <li>
+            <a href="v1/who-was-ill.html" class="govuk-link govuk-link--no-visited-state">Who was ill</a>
+          </li>
+          <li>
+            <a href="v1/illness-start-date.html" class="govuk-link govuk-link--no-visited-state">Illness start date</a>
+          </li>
+          <li>
+            <a href="v1/continued-illness.html" class="govuk-link govuk-link--no-visited-state">Continued illness</a>
+          </li>
+          <li>
+            <a href="v1/illness-end-date.html" class="govuk-link govuk-link--no-visited-state">Illness end date</a>
+          </li>
+          <li>
+            <a href="v1/illness-information.html" class="govuk-link govuk-link--no-visited-state">Illness information</a>
+          </li>
+          <li>
+            <a href="v1/evidence.html" class="govuk-link govuk-link--no-visited-state">Evidence</a>
+          </li>
+          <li>
+            <a href="v1/evidence-upload.html" class="govuk-link govuk-link--no-visited-state">Evidence upload</a>
+          </li>
+          <li>
+            <a href="v1/check-your-answers.html" class="govuk-link govuk-link--no-visited-state">Check your answers</a>
+          </li>
+          <li>
+            <a href="v1/confirmation.html" class="govuk-link govuk-link--no-visited-state">confirmation</a>
+          </li>
+          <li>
+            <a href="v1/other-reason-entry.html" class="govuk-link govuk-link--no-visited-state">Other reason entry</a>
+          </li>
+          <li>
+            <a href="v1/reason-other.html" class="govuk-link govuk-link--no-visited-state">reason-other</a>
+          </li>
+        </ul>
+
+        <h3 class="govuk-heading-s">Live</h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/appeal-a-penalty-for-filing-your-company-accounts-late" class="govuk-link govuk-link--no-visited-state">Live start page</a>
+          </li>
+        </ul>
+
+        <hr>
+
+        <h3 class="govuk-heading-m">Prototype data</h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>To access PSC screens from 'What is the company number or Overseas Entity ID?' screen use any 8 digit number</li><br>
+        </ul>
+
+        <hr>
+
+        <h3 class="govuk-heading-m">Screen flow diagram</h3>
+
+        <p class="govuk-body"><a href="https://app.mural.co/t/companieshouse8589/m/companieshouse8589/1675779212617/dab934c63917c3b06d20db6614f9812016180da4?sender=u9bc72e5725f1871777091172" class="govuk-link govuk-link--no-visited-state" target="_blank">Mural screen flow diagram</a></p>
+
+        <hr>
+        
+        <h3 class="govuk-heading-m">User research for version 1</h3>
+
+      </div>
+    </div>
+
+    </ul>
+    <h2 class="govuk-heading-l">Other information</h2>
   </div>
 </div>
 

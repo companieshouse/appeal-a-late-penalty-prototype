@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to ill health: Who was ill?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="{{currentUrl}}" method="post">
+
+        {% set someoneElseInput %}
+        {{ govukInput({
+              id: "other-person",
+              name: "otherPerson",
+              checked: otherPerson,
+              classes: "govuk-!-width-one-third",
+              errorMessage: otherPersonError,
+              label: {
+                text: "Their relationship to the company"
+              }
+            }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+              idPrefix: "ill-person",
+                name: "illPerson",
+                errorMessage: illPersonError,
+                fieldset: {
+                  legend: {
+                    text: 'Who was ill?',
+                    isPageHeading: true,
+                    classes: 'govuk-fieldset__legend--xl'
+                  }
+                },
+                items: [
+                  {
+                    value: "director",
+                    text: "A company director",
+                    checked: checkedDirector
+                  },
+                  {
+                    value: "accountant",
+                    text: "A company accountant or agent",
+                    checked: checkedAccountant
+                  },
+                  {
+                    value: "family",
+                    text: "A family member of a director",
+                    checked: checkedFamily
+                  },
+                  {
+                    value: "employee",
+                    text: "A company employee",
+                    checked: checkedEmployee
+                  },
+                  {
+                    value: "otherPerson",
+                    text: "Someone else",
+                    checked: otherPersonError,
+                    conditional: {
+                      html: someoneElseInput
+                    }
+                  }
+                ]
+              }) }}
+
+        {{ govukButton({
+              text: "Continue"
+            }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

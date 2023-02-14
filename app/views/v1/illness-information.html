@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to ill health: How did this affect your ability to file on time?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">How did this affect your ability to file on time?</h1>
+      <form action="{{currentUrl}}" method="post">
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        {{ govukInput({
+          label: {
+            text: "Your name"
+          },
+          id: "your-name",
+          name: "your-name"
+        }) }}
+
+        <p class="govuk-body">Anything you tell us to support your application will be kept confidential.</p>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              What details should I include to support my appeal?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">You should include:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>any relevant dates - for example, the dates that a problem began and ended</li>
+              <li>names of people or organisations that prevented accounts fromm being filed on 
+                time, and their relationship to the company</li>
+            </ul>
+            <p class="govuk-body">If the person who usually files the accounts was not abl;e to, 
+              tell us why no one else could file them.</p>
+            <p class="govuk-body">If you were given advice by Companies House, include details of
+               when and how you contacted us.</p>
+          </div>
+        </details>
+
+        {{ govukTextarea({
+            name: "illnessInformation",
+            id: "illness-information",
+            value: info,
+            rows: '8',
+            hint: {
+              html: multipleDirectorsHTML
+            }
+          }) }}
+
+        {{ govukButton({
+              text: "Continue"
+            }) }}
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+
+{% endblock %}

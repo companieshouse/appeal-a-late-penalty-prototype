@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  You must tell us the reason for the appeal
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="{{currentUrl}}" method="post">
+
+        {{ govukRadios({
+          idPrefix: "choose-reason",
+          name: "appealReason",
+          fieldset: {
+            legend: {
+              text: 'Why are you appealing this penalty?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--xl'
+            }
+          },
+          items: [
+            {
+              value: "illness",
+              text: "Illness and health issues",
+              checked: checkedIllness
+            },
+            {
+              value: "other",
+              text: "I'm appealing for another reason",
+              checked: otherReasonError
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

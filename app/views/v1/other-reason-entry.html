@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Other reason
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="interruption-card">
+      <h1 class="govuk-heading-xl">Before you continue</h1>
+
+
+      <p class="govuk-body-l">We may reject your appeal if you tell us:</p>
+      <ul class="govuk-list govuk-list--bullet">
+
+        <li>there is a problem with your accountant</li>
+        <li>your company is dormant</li>
+        <li>you are not familiar with the filing requirements</li>
+        <li>your company or its directors have financial difficulties</li>
+        <li>your accounts were delayed or lost in the post</li>
+        <li>the directors live or were travelling overseas</li>
+        <li>another director is responsible for preparing the accounts</li>
+      </ul>
+      {{ govukButton({
+        text: "Continue with appeal",
+        href: "reason-other",
+        classes: "govuk-link govuk-!-margin-top-5 govuk-link--interrupt"
+      }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

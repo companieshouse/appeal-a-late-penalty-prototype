@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to ill health: Is the person still ill?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="{{currentUrl}}" method="post">
+        
+        {{ data['illnessStartDay'] }}
+        {{ govukRadios({
+              classes: "govuk-radios--inline",
+              idPrefix: "continued-illness",
+              name: "continuedIllness",
+              errorMessage: continuedIllnessError,
+              fieldset: {
+                legend: {
+                  text: 'Is the person still ill?',
+                  isPageHeading: true,
+                  classes: 'govuk-fieldset__legend--xl'
+                }
+              },
+              hint: {
+                text: "You told us the illness started on" 
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes"
+                },
+                {
+                  value: "no",
+                  text: "No"
+                }
+              ]
+            }) }}
+
+        {{ govukButton({
+              text: "Continue"
+            }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

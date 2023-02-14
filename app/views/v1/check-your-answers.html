@@ -1,0 +1,189 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Check your answers before submitting your appeal
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+          Check your appeal
+        </h1>
+
+        <h3 class="govuk-heading-m">
+          Penalty details
+        </h3>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Company name"
+            },
+            value: {
+              text: 'LARGE COMPANY'
+            }
+          },
+          {
+            key: {
+              text: "Company number"
+            },
+            value: {
+              text: '00345567'
+            }
+          },
+          {
+            key: {
+              text: "Type"
+            },
+            value: {
+              text: "Late filing penalty (A00000001)"
+            }
+          },
+          {
+            key: {
+              text: "Contact email"
+            },
+            value: {
+              html: 'lrge_company-email@emailserver.co.uk'
+          } }
+      ] }) }}
+
+   <h2 class="govuk-heading-l">
+    Reason for appeal
+  </h2>
+
+  <h3 class="govuk-heading-m">
+    Illness
+  </h3>
+
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Who was ill"
+      },
+      value: {
+        text: "Director"
+      },
+      actions: {
+        items: [
+          {
+            href: "who-was-ill",
+            text: "Change",
+            visuallyHiddenText: "who-was-ill"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Illness start date"
+      },
+      value: {
+        text: "5 January 1978"
+      },
+      actions: {
+        items: [
+          {
+            href: "illness-start-date",
+            text: "Change",
+            visuallyHiddenText: "illness-start-date"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Illness end date"
+      },
+      value: {
+        text: "5 January 1978"
+      },
+      actions: {
+        items: [
+          {
+            href: "illness-end-date",
+            text: "Change",
+            visuallyHiddenText: "illness-end-date"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Your name"
+      },
+      value: {
+        text: "Bob"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "your-name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Further information"
+      },
+      value: {
+        text: "test"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "further-info"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        text: "None"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "support-docs"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
+        <h2 class="govuk-heading-m">Submit your appeal</h2>
+        <p>
+          By submitting this appeal you are confirming that, to the best of your knowledge, the details you are providing are true.
+        </p>
+        <form action="{{currentUrl}}" method="post">
+          {{ govukButton({
+            text: "Confirm and submit appeal"
+          }) }}
+        </form>
+
+    </div>
+  </div>
+{% endblock %}
