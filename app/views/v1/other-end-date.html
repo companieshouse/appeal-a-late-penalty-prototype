@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Appeal due to ill health: Tell us when the illness started
+Appeal due to other reason: Tell us when the other reason started
 {% endblock %}
 
 {% block beforeContent %}
@@ -17,38 +17,38 @@ Appeal due to ill health: Tell us when the illness started
       <form action="{{currentUrl}}" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessStart-hint">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="otherEnd-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
-                When did the illness start?
+                When did the reason your appealing the penalty end?
               </h1>
             </legend>
-            <div id="illnessStart-hint" class="govuk-hint">
+            <div id="otherEnd-hint" class="govuk-hint">
               For example, 27 3 2007
             </div>
-            <div class="govuk-date-input" id="illnessStart">
+            <div class="govuk-date-input" id="otherEnd">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="illnessStart-day">
+                  <label class="govuk-label govuk-date-input__label" for="otherEnd-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessStart-day" name="illnessStart-day" type="text" inputmode="illnessStartDay">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherEnd-day" name="otherEnd-day" type="text" inputmode="otherEndDay">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="illnessStart-month">
+                  <label class="govuk-label govuk-date-input__label" for="otherEnd-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessStart-month" name="illnessStart-month" type="text" inputmode="illnessStartMonth">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherEnd-month" name="otherEnd-month" type="text" inputmode="otherEndMonth">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="illnessStart-year">
+                  <label class="govuk-label govuk-date-input__label" for="otherEnd-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="illnessStart-year" name="illnessStart-year" type="text" inputmode="illnessStartYear">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="otherEnd-year" name="otherEnd-year" type="text" inputmode="otherEndYear">
                 </div>
               </div>
             </div>

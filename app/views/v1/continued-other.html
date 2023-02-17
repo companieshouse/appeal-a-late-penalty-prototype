@@ -17,25 +17,25 @@ Appeal due to ill health: Is the person still ill?
       <form action="{{currentUrl}}" method="post">
 
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="continuedIllness-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="continuedOther-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
-                Is the person still ill?
+                Is the reason your appealing the penalty still ongoing?
               </h1>
             </legend>
-            <div id="continuedIllness-hint" class="govuk-hint">
-              You told us the illness started on {{ data['illnessStart-day'] }} {{ data['illnessStart-month'] | displayMonth }} {{ data['illnessStart-year'] }}
+            <div id="continuedOther-hint" class="govuk-hint">
+              You told us it started on {{ data['otherStart-day'] }} {{ data['otherStart-month'] | displayMonth }} {{ data['otherStart-year'] }}
             </div>
             <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="continuedIllness" name="continuedIllness" type="radio" value="yes">
-                <label class="govuk-label govuk-radios__label" for="continuedIllness">
+                <input class="govuk-radios__input" id="continuedOther" name="continuedOther" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="continuedOther">
                   Yes
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="continuedIllness-2" name="continuedIllness" type="radio" value="no">
-                <label class="govuk-label govuk-radios__label" for="continuedIllness-2">
+                <input class="govuk-radios__input" id="continuedOther-2" name="continuedOther" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="continuedOther-2">
                   No
                 </label>
               </div>

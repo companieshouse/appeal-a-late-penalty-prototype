@@ -11,42 +11,42 @@ router.get('/v1/signin', function (req, res) {
 
 router.post('/v1/signin', function (req, res) {
   // Create empty array and set error variables to false
-  var errors = []
-  var emailHasError = false
-  var passwordHasError = false
+  // var errors = []
+  // var emailHasError = false
+  // var passwordHasError = false
 
-  // Check if user has filled out a email
-  if (req.session.data['emailAddress'] === '') {
-    // No value so add error to array
-    emailHasError = true
-    errors.push({
-      text: 'Enter your email address',
-      href: '#emailAddress'
-    })
-  }
+  // // Check if user has filled out a email
+  // if (req.session.data['emailAddress'] === '') {
+  //   // No value so add error to array
+  //   emailHasError = true
+  //   errors.push({
+  //     text: 'Enter your email address',
+  //     href: '#emailAddress'
+  //   })
+  // }
 
-  // Check if user has filled out a password
-  if (req.session.data['password'] === '') {
-    // No value so add error to array
-    passwordHasError = true
-    errors.push({
-      text: 'Enter your password',
-      href: '#password'
-    })
-  }
+  // // Check if user has filled out a password
+  // if (req.session.data['password'] === '') {
+  //   // No value so add error to array
+  //   passwordHasError = true
+  //   errors.push({
+  //     text: 'Enter your password',
+  //     href: '#password'
+  //   })
+  // }
 
-  // Check if ether filed not filled out
-  if (emailHasError || passwordHasError) {
-    // Re-show page with error value as true so errors will show
-    res.render('v1/signin', {
-      errorEmail: emailHasError,
-      errorPassword: passwordHasError,
-      errorList: errors
-    })
-  } else {
-    // User inputted value so move to next page
+  // // Check if ether filed not filled out
+  // if (emailHasError || passwordHasError) {
+  //   // Re-show page with error value as true so errors will show
+  //   res.render('v1/signin', {
+  //     errorEmail: emailHasError,
+  //     errorPassword: passwordHasError,
+  //     errorList: errors
+  //   })
+  // } else {
+  //   // User inputted value so move to next page
     res.redirect('/v1/penalty-reference')
-  }
+  
 })
 
 // ******* penalty-reference javascript ********************************
@@ -215,6 +215,48 @@ router.get('/v1/reason-other', function (req, res) {
 })
 
 router.post('/v1/reason-other', function (req, res) {
+  res.redirect('/v1/other-start-date')
+})
+
+// ******* other-start-date javascript ********************************
+router.get('/v1/other-start-date', function (req, res) {
+  // Set URl
+  res.render('v1/other-start-date', {
+    currentUrl: req.originalUrl
+  })
+})
+
+router.post('/v1/other-start-date', function (req, res) {
+  res.redirect('/v1/continued-other')
+})
+
+// ******* continued-other javascript ********************************
+router.get('/v1/continued-other', function (req, res) {
+  // Set URl
+  res.render('v1/continued-other', {
+    currentUrl: req.originalUrl
+  })
+})
+
+router.post('/v1/continued-other', function (req, res) {
+
+  if (req.session.data['continuedOther'] === 'yes') {
+    res.redirect('/v1/evidence')
+  } else {
+    // User inputted value so move to next page
+    res.redirect('/v1/other-end-date')
+  }
+})
+
+// ******* other-end-date javascript ********************************
+router.get('/v1/other-end-date', function (req, res) {
+  // Set URl
+  res.render('v1/other-end-date', {
+    currentUrl: req.originalUrl
+  })
+})
+
+router.post('/v1/other-end-date', function (req, res) {
   res.redirect('/v1/evidence')
 })
 

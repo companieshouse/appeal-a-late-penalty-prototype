@@ -19,8 +19,8 @@ Appealing for other reasons
         <p class="govuk-body-l">Anything you tell us to support your appeal will be kept confidential.</p>
 
         {{ govukInput({
-          id: "your-name",
-          name: "your-name",
+          id: "yourName",
+          name: "yourName",
           errorMessage: nameError,
           label: {
             text: "Your name"
@@ -33,14 +33,14 @@ Appealing for other reasons
           name: "relationship",
           errorMessage: relationshipError,
           label: {
-            text: "Your relationship to the companyp"
+            text: "Your relationship to the company"
           },
           value: relationship
         }) }}
 
 
         {{ govukInput({
-          id: "other-reason",
+          id: "otherReason",
           name: "otherReason",
           errorMessage: titleError,
           label: {
@@ -50,31 +50,28 @@ Appealing for other reasons
         }) }}
 
         <div class="govuk-form-group">
-          <label class="govuk-label" for="more-detail">
-            Detailed description of the reason
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  What details should I include to support my appeal?
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                <p class="govuk-body">You should include:</p>
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>any relevant dates - for example, the date of an incident that 
-                    prevented the accounts from being filed (for example, a fire or 
-                    bereavement), or the dates that a problem began and ended</li>
-                  <li>names of people or organisations that prevented accounts from 
-                    being filed on time, and their relationship to the company</li>
-                </ul>
-                <p class="govuk-body">If the person who usually files the accounts was not 
-                  able to, tell us why no one else could file them.</p>
-                <p class="govuk-body">If you were given advice by Companies House, include 
-                  details of when and how you contacted us.</p>
-              </div>
-            </details>
-          </label>
-          <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5"></textarea>
+
+          <h3 class="govuk-heading-m">What details should I include to support my appeal?</h3>
+
+          <p class="govuk-body">You should include:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>any relevant dates - for example, the date of an incident that 
+              prevented the accounts from being filed (for example, a fire or 
+              bereavement), or the dates that a problem began and ended</li>
+            <li>names of people or organisations that prevented accounts from 
+              being filed on time, and their relationship to the company</li>
+          </ul>
+          <p class="govuk-body">If the person who usually files the accounts was not 
+            able to, tell us why no one else could file them.</p>
+          <p class="govuk-body">If you were given advice by Companies House, include 
+            details of when and how you contacted us.</p>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="more-detail">
+              Reason for appealing this penalty
+            </label>
+            <textarea class="govuk-textarea" id="detailedDescription" name="detailedDescription" rows="8" value="detailedDescription"></textarea>
+          </div>
         </div>
 
         {{ govukButton({
