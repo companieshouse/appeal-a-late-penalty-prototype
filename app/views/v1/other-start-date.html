@@ -14,8 +14,57 @@ Appeal due to other reason: Tell us when the other reason started
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if errorday or errorMonth or errorYear %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
       <form action="{{currentUrl}}" method="post">
 
+        {% if errorday or errorMonth or errorYear %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="otherStart-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                When did it start?
+              </h1>
+            </legend>
+            <div id="otherStart-hint" class="govuk-hint">
+              Tell us when the reason for the appeal started.
+            </div>
+            <p id="otherStart-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> The date must include a day, month and year
+            </p>
+            <div class="govuk-date-input" id="otherStart">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherStart-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="otherStart-day" name="otherStart-day" type="text" inputmode="otherStartDay">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherStart-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="otherStart-month" name="otherStart-month" type="text" inputmode="otherStartMonth">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherStart-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="otherStart-year" name="otherStart-year" type="text" inputmode="otherStartYear">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        {% else %} 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="otherStart-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
@@ -54,6 +103,8 @@ Appeal due to other reason: Tell us when the other reason started
             </div>
           </fieldset>
         </div>
+        {% endif %}
+
 
         {{ govukButton({
              text: "Continue"

@@ -10,11 +10,15 @@ window.GOVUKPrototypeKit.documentReady(() => {
 function upload_file() {
   var file_div = document.getElementById('uploaded_file');
 
+  fetch('?uploaded=true');
+
   file_div.classList.remove('govuk-visually-hidden');
 }
 
 function remove_file() {
   var file_div = document.getElementById('uploaded_file');
+
+  fetch('?uploaded=false');
 
   file_div.classList.add('govuk-visually-hidden');
 }

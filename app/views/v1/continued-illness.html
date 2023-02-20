@@ -14,8 +14,45 @@ Appeal due to ill health: Is the person still ill?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if errorContinuedIllness %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
       <form action="{{currentUrl}}" method="post">
 
+        {% if errorContinuedIllness %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" aria-describedby="continuedIllness-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                Is the person still ill?
+              </h1>
+            </legend>
+            <p id="continuedIllness-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> You must select if the person is still ill
+            </p>
+            <div id="continuedIllness-hint" class="govuk-hint">
+              You told us the illness started on {{ data['illnessStart-day'] }} {{ data['illnessStart-month'] | displayMonth }} {{ data['illnessStart-year'] }}
+            </div>
+            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="continuedIllness" name="continuedIllness" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="continuedIllness">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="continuedIllness-2" name="continuedIllness" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="continuedIllness-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        {% else %} 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="continuedIllness-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
@@ -42,6 +79,7 @@ Appeal due to ill health: Is the person still ill?
             </div>
           </fieldset>
         </div>
+        {% endif %}
 
         {{ govukButton({
               text: "Continue"

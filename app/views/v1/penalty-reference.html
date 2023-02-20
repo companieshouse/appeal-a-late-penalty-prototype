@@ -14,6 +14,12 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if errorCompany or errorRef %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
 
       <h1 class="govuk-heading-xl">
         What are the penalty details?
@@ -21,6 +27,7 @@
 
       <form action="{{currentUrl}}" method="post">
 
+        {% if errorCompany %}
         {{ govukInput({
           label: {
             text: "Company number"
@@ -31,10 +38,41 @@
           classes: "govuk-input--width-10",
           id: "company-number",
           name: "companyNumber",
-          value: companyNumber
+          value: companyNumber,
+          errorMessage: {
+            text: "You must enter as company number"}
         }) }}
+        {% else %}
+          {{ govukInput({
+            label: {
+              text: "Company number"
+            },
+            hint: {
+              text: "This is the 8-character reference issued by Companies House when the company was set up."
+            },
+            classes: "govuk-input--width-10",
+            id: "company-number",
+            name: "companyNumber",
+            value: companyNumber
+          }) }}
+        {% endif %}
 
-
+        {% if errorRef %}
+        {{ govukInput({
+          label: {
+            text: "Reference number"
+          },
+          hint: {
+            text: "Enter the full penalty reference. It will be in the format A0000000, PEN1A/00000000 or PEN2A/00000000."
+          },
+          classes: "govuk-input--width-20",
+          id: "penalty-reference",
+          name: "penaltyReference",
+          value: penaltyReference,
+          errorMessage: {
+            text: "You must enter as reference number"}
+        }) }}
+        {% else %}
         {{ govukInput({
           label: {
             text: "Reference number"
@@ -47,6 +85,7 @@
           name: "penaltyReference",
           value: penaltyReference
         }) }}
+        {% endif %}
 
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">

@@ -14,63 +14,125 @@ Appeal due to ill health: Who was ill?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if errorIllPerson %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+
       <form action="{{currentUrl}}" method="post">
 
-        {% set someoneElseInput %}
-        {{ govukInput({
-              id: "other-person",
-              name: "otherPerson",
-              checked: otherPerson,
-              classes: "govuk-!-width-one-third",
-              errorMessage: otherPersonError,
-              label: {
-                text: "Their relationship to the company"
-              }
-            }) }}
-        {% endset -%}
+        {% if errorIllPerson %}
+        <div class="govuk-form-group govuk-form-group--error">
 
-        {{ govukRadios({
-              idPrefix: "ill-person",
-                name: "illPerson",
-                errorMessage: illPersonError,
-                fieldset: {
-                  legend: {
-                    text: 'Who was ill?',
-                    isPageHeading: true,
-                    classes: 'govuk-fieldset__legend--xl'
-                  }
-                },
-                items: [
-                  {
-                    value: "Director",
-                    text: "A company director",
-                    checked: checkedDirector
-                  },
-                  {
-                    value: "Accountant",
-                    text: "A company accountant or agent",
-                    checked: checkedAccountant
-                  },
-                  {
-                    value: "Family",
-                    text: "A family member of a director",
-                    checked: checkedFamily
-                  },
-                  {
-                    value: "Employee",
-                    text: "A company employee",
-                    checked: checkedEmployee
-                  },
-                  {
-                    value: "Other Person",
-                    text: "Someone else",
-                    checked: otherPersonError,
-                    conditional: {
-                      html: someoneElseInput
-                    }
-                  }
-                ]
-              }) }}
+          <fieldset class="govuk-fieldset" aria-describedby="illPerson-hint">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                Who was ill?
+              </h1>
+            </legend>
+            <p id="illPerson-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> You must select a person
+            </p>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="illPerson" name="illPerson" type="radio" value="Director">
+                <label class="govuk-label govuk-radios__label" for="illPerson">
+                  A company director
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="illPerson-2" name="illPerson" type="radio" value="Accountant">
+                <label class="govuk-label govuk-radios__label" for="illPerson-2">
+                  A company accountant or agent
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="illPerson-3" name="illPerson" type="radio" value="Family">
+                <label class="govuk-label govuk-radios__label" for="illPerson-3">
+                  A family member of a director
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="illPerson-4" name="illPerson" type="radio" value="Employee">
+                <label class="govuk-label govuk-radios__label" for="illPerson-4">
+                  A company employee
+                </label>
+              </div>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="illPerson-5" name="illPerson" type="radio" value="Other Person" data-aria-controls="conditional-relationship">
+                  <label class="govuk-label govuk-radios__label" for="illPerson-5">
+                    Someone else
+                  </label>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-ill-relationship">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="ill-relationship">
+                      Their relationship to the company
+                    </label>
+                    <input class="govuk-input govuk-!-width-one-third" id="ill-relationship" name="ill-relationship">
+                  </div>
+                </div>
+            </div>
+          </fieldset>
+        </div>
+        {% else %}
+          <div class="govuk-form-group">
+
+            <fieldset class="govuk-fieldset" aria-describedby="illPerson-hint">
+
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                <h1 class="govuk-fieldset__heading">
+                  Who was ill?
+                </h1>
+              </legend>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="illPerson" name="illPerson" type="radio" value="Director">
+                  <label class="govuk-label govuk-radios__label" for="illPerson">
+                    A company director
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="illPerson-2" name="illPerson" type="radio" value="Accountant">
+                  <label class="govuk-label govuk-radios__label" for="illPerson-2">
+                    A company accountant or agent
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="illPerson-3" name="illPerson" type="radio" value="Family">
+                  <label class="govuk-label govuk-radios__label" for="illPerson-3">
+                    A family member of a director
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="illPerson-4" name="illPerson" type="radio" value="Employee">
+                  <label class="govuk-label govuk-radios__label" for="illPerson-4">
+                    A company employee
+                  </label>
+                </div>
+                <div class="govuk-radios" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="illPerson-5" name="illPerson" type="radio" value="Other Person" data-aria-controls="conditional-relationship">
+                    <label class="govuk-label govuk-radios__label" for="illPerson-5">
+                      Someone else
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-relationship">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="relationship">
+                        Their relationship to the company
+                      </label>
+                      <input class="govuk-input govuk-!-width-one-third" id="relationship" name="relationship">
+                    </div>
+                  </div>
+              </div>
+            </fieldset>
+          </div>
+        {% endif %}
 
         {{ govukButton({
               text: "Continue"

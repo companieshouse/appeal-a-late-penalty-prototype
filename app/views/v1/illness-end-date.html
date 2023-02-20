@@ -14,46 +14,96 @@ Appeal due to ill health: Tell us when the illness ended
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if errorday or errorMonth or errorYear %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
       <form action="{{currentUrl}}" method="post">
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessEnd-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-            <h1 class="govuk-fieldset__heading">
-              When did the illness end?
-            </h1>
-          </legend>
-          <div id="illnessEnd-hint" class="govuk-hint">
-            For example, 27 3 2007
-          </div>
-          <div class="govuk-date-input" id="illnessEnd">
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="illnessEnd-day">
-                  Day
-                </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessEnd-day" name="illnessEnd-day" type="text" inputmode="illnessStartDay">
+        {% if errorday or errorMonth or errorYear %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessEnd-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                When did the illness end?
+              </h1>
+            </legend>
+            <div id="illnessEnd-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <p id="illnessEnd-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> The date must include a day, month and year
+            </p>
+            <div class="govuk-date-input" id="illnessEnd">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessEnd-day" name="illnessEnd-day" type="text" inputmode="illnessEndDay">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessEnd-month" name="illnessEnd-month" type="text" inputmode="illnessEndMonth">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="illnessEnd-year" name="illnessEnd-year" type="text" inputmode="illnessEndYear">
+                </div>
               </div>
             </div>
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="illnessEnd-month">
-                  Month
-                </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessEnd-month" name="illnessEnd-month" type="text" inputmode="illnessStartMonth">
+          </fieldset>
+        </div>
+        {% else %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessEnd-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                When did the illness end?
+              </h1>
+            </legend>
+            <div id="illnessEnd-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="illnessEnd">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessEnd-day" name="illnessEnd-day" type="text" inputmode="illnessEndDay">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessEnd-month" name="illnessEnd-month" type="text" inputmode="illnessEndMonth">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="illnessEnd-year" name="illnessEnd-year" type="text" inputmode="illnessEndYear">
+                </div>
               </div>
             </div>
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="illnessEnd-year">
-                  Year
-                </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="illnessEnd-year" name="illnessEnd-year" type="text" inputmode="illnessStartYeay">
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </div>
+          </fieldset>
+        </div>
+        {% endif %}
 
         {{ govukButton({
               text: "Continue"

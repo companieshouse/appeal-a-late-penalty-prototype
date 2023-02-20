@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to ill health: How did this affect your ability to file on time?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    {% if errorRelationship %}
+    {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">What is your relationship to the company?</h1>
+        <form action="{{currentUrl}}" method="post">
+          {% if errorRelationship %}
+            {{ govukInput({
+              id: "relationship",
+              name: "relationship",
+              value: relationship,
+              errorMessage: {
+                text: "Enter your relationship to the company"
+              }
+            }) }}
+          {% else %}
+            {{ govukInput({
+              id: "relationship",
+              name: "relationship",
+              value: relationship
+            }) }}
+          {% endif %}
+
+        {{ govukButton({
+              text: "Continue"
+            }) }}
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+
+{% endblock %}

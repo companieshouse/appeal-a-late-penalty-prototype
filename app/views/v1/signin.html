@@ -15,7 +15,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      {% if errorEmail == true or errorPassword == true %}
+      {% if errorEmail or errorPassword %}
         {{ govukErrorSummary({
             titleText: "There is a problem",
             errorList: errorList
@@ -25,7 +25,7 @@
       <p class="govuk-body">You cannot use your WebFiling details to sign in. You must sign in to or register a Companies House account.</p>
 
       <form action="{{currentUrl}}" method="post">
-        {% if errorEmail == true %}
+        {% if errorEmail %}
           {{ govukInput({
             label: {
               text: "Email address"
@@ -53,7 +53,8 @@
             name: "emailAddress"
           }) }}
         {% endif %}
-        {% if errorPassword == true %}
+        
+        {% if errorPassword %}
           {{ govukInput({
             label: {
               text: "Password"

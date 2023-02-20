@@ -13,35 +13,73 @@ Add documents to support your application
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if errorEvidence %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
 
       <form action="{{currentUrl}}" method="post">
 
-        {{ govukRadios({
-              classes: "govuk-radios--inline",
-              idPrefix: "supporting-evidence",
-              name: "supportingEvidence",
-              errorMessage: supportingEvidenceError,
-              fieldset: {
-                legend: {
-                  text: 'Do you want to upload documents to support your application?',
-                  isPageHeading: true,
-                  classes: 'govuk-fieldset__legend--xl'
-                }
-              },
-              hint: {
-                html: 'Anything you upload will be kept confidential.'
-              },
-              items: [
-                {
-                  value: "yes",
-                  text: "Yes"
-                },
-                {
-                  value: "no",
-                  text: "No"
-                }
-              ]
-            }) }}
+        {% if errorEvidence %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" aria-describedby="supportingEvidence-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                Do you want to upload documents to support your application?
+              </h1>
+            </legend>
+            <p id="supportingEvidence-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> You must select if you want to upload documents
+            </p>
+            <div id="supportingEvidence-hint" class="govuk-hint">
+              Anything you upload will be kept confidential.
+            </div>
+            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="supportingEvidence" name="supportingEvidence" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="supportingEvidence">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="supportingEvidence-2" name="supportingEvidence" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="supportingEvidence-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        {% else %} 
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="supportingEvidence-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                Do you want to upload documents to support your application?
+              </h1>
+            </legend>
+            <div id="supportingEvidence-hint" class="govuk-hint">
+              Anything you upload will be kept confidential.
+            </div>
+            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="supportingEvidence" name="supportingEvidence" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="supportingEvidence">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="supportingEvidence-2" name="supportingEvidence" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="supportingEvidence-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        {% endif %}
 
         {{ govukButton({
               text: "Continue"

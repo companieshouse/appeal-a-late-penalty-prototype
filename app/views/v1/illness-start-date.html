@@ -14,8 +14,57 @@ Appeal due to ill health: Tell us when the illness started
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if errorday or errorMonth or errorYear %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
       <form action="{{currentUrl}}" method="post">
 
+        {% if errorday or errorMonth or errorYear %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessStart-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                When did the illness start?
+              </h1>
+            </legend>
+            <div id="illnessStart-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <p id="illnessStart-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> The date must include a day, month and year
+            </p>
+            <div class="govuk-date-input" id="illnessStart">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessStart-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessStart-day" name="illnessStart-day" type="text" inputmode="illnessStartDay">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessStart-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessStart-month" name="illnessStart-month" type="text" inputmode="illnessStartMonth">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessStart-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="illnessStart-year" name="illnessStart-year" type="text" inputmode="illnessStartYear">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        {% else %}
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessStart-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
@@ -54,6 +103,7 @@ Appeal due to ill health: Tell us when the illness started
             </div>
           </fieldset>
         </div>
+        {% endif %}
 
         {{ govukButton({
              text: "Continue"

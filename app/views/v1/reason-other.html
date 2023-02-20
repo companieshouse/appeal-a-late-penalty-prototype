@@ -13,7 +13,12 @@ Appealing for other reasons
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="{{currentUrl}}" method="post">
+      {% if errorShortTitle or errorReason %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
 
         <h1 class="govuk-heading-xl">Tell us why you're appealing this penalty</h1>
 
@@ -33,46 +38,49 @@ Appealing for other reasons
           details of when and how you contacted us.</p>
         <p class="govuk-body">Anything you tell us to support your appeal will be kept confidential.</p>
 
-        {{ govukInput({
-          id: "yourName",
-          name: "yourName",
-          errorMessage: nameError,
-          label: {
-            text: "Your name"
-          },
-          value: yourName
-        }) }}
+        <form action="{{currentUrl}}" method="post">
 
-        {{ govukInput({
-          id: "relationship",
-          name: "relationship",
-          errorMessage: relationshipError,
-          label: {
-            text: "Your relationship to the company"
-          },
-          value: relationship
-        }) }}
+          {% if errorShortTitle or errorReason %}
+            {{ govukInput({
+              id: "otherReason",
+              name: "otherReason",
+              value: otherReason,
+              errorMessage: {
+                text: "Enter a short title for the reason"
+              }
+            }) }}
+          {% else %}
+            {{ govukInput({
+              id: "otherReason",
+              name: "otherReason",
+              errorMessage: titleError,
+              label: {
+                text: "Short title for the reason"
+              },
+              value: otherReason
+            }) }}
+          {% endif %}
 
+          {% if errorShortTitle or errorReason %}
+            <div class="govuk-form-group govuk-form-group--error">
+              <div class="govuk-form-group">
+                <p id="detailedDescription-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Enter a reason for appealing this penalty
+                </p>
+                <textarea class="govuk-textarea" id="detailedDescription" name="detailedDescription" rows="8" value="detailedDescription"></textarea>
+              </div>
+            </div>
+          {% else %}
+            <div class="govuk-form-group">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="more-detail">
+                  Reason for appealing this penalty
+                </label>
+                <textarea class="govuk-textarea" id="detailedDescription" name="detailedDescription" rows="8" value="detailedDescription"></textarea>
+              </div>
+            </div>
+          {% endif %}
 
-        {{ govukInput({
-          id: "otherReason",
-          name: "otherReason",
-          errorMessage: titleError,
-          label: {
-            text: "Short title for the reason"
-          },
-          value: otherReason
-        }) }}
-
-        <div class="govuk-form-group">
-
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="more-detail">
-              Reason for appealing this penalty
-            </label>
-            <textarea class="govuk-textarea" id="detailedDescription" name="detailedDescription" rows="8" value="detailedDescription"></textarea>
-          </div>
-        </div>
 
         {{ govukButton({
           text: "Continue"
