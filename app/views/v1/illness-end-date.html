@@ -14,7 +14,8 @@ Appeal due to ill health: Tell us when the illness ended
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if errorday or errorMonth or errorYear %}
+      <!-- Check for error -->
+      {% if errorIllnessEndDay or errorIllnessEndMonth or errorIllnessEndYear %}
       {{ govukErrorSummary({
           titleText: "There is a problem",
           errorList: errorList
@@ -22,56 +23,24 @@ Appeal due to ill health: Tell us when the illness ended
       {% endif %}
       <form action="{{currentUrl}}" method="post">
 
-        {% if errorday or errorMonth or errorYear %}
+        <!-- Check for error -->
+        {% if errorIllnessEndDay or errorIllnessEndMonth or errorIllnessEndYear %}
         <div class="govuk-form-group govuk-form-group--error">
+        {% else %}
+        <div class="govuk-form-group">
+        {% endif %} 
           <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessEnd-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
               <h1 class="govuk-fieldset__heading">
                 When did the illness end?
               </h1>
             </legend>
-            <div id="illnessEnd-hint" class="govuk-hint">
-              For example, 27 3 2007
-            </div>
+            <!-- Check for error -->
+            {% if errorIllnessEndDay or errorIllnessEndMonth or errorIllnessEndYear %}
             <p id="illnessEnd-error" class="govuk-error-message">
               <span class="govuk-visually-hidden">Error:</span> The date must include a day, month and year
             </p>
-            <div class="govuk-date-input" id="illnessEnd">
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-day">
-                    Day
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessEnd-day" name="illnessEnd-day" type="text" inputmode="illnessEndDay">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-month">
-                    Month
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessEnd-month" name="illnessEnd-month" type="text" inputmode="illnessEndMonth">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="illnessEnd-year">
-                    Year
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="illnessEnd-year" name="illnessEnd-year" type="text" inputmode="illnessEndYear">
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-        {% else %}
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessEnd-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-              <h1 class="govuk-fieldset__heading">
-                When did the illness end?
-              </h1>
-            </legend>
+            {% endif %} 
             <div id="illnessEnd-hint" class="govuk-hint">
               For example, 27 3 2007
             </div>
@@ -81,7 +50,12 @@ Appeal due to ill health: Tell us when the illness ended
                   <label class="govuk-label govuk-date-input__label" for="illnessEnd-day">
                     Day
                   </label>
+                  <!-- Check for error -->
+                  {% if errorIllnessEndDay %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessEnd-day" name="illnessEnd-day" type="text" inputmode="illnessEndDay">
+                  {% else %}
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessEnd-day" name="illnessEnd-day" type="text" inputmode="illnessEndDay">
+                  {% endif %} 
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -89,7 +63,12 @@ Appeal due to ill health: Tell us when the illness ended
                   <label class="govuk-label govuk-date-input__label" for="illnessEnd-month">
                     Month
                   </label>
+                  <!-- Check for error -->
+                  {% if errorIllnessEndMonth %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessEnd-month" name="illnessEnd-month" type="text" inputmode="illnessEndMonth">
+                  {% else %}
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessEnd-month" name="illnessEnd-month" type="text" inputmode="illnessEndMonth">
+                  {% endif %} 
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -97,13 +76,17 @@ Appeal due to ill health: Tell us when the illness ended
                   <label class="govuk-label govuk-date-input__label" for="illnessEnd-year">
                     Year
                   </label>
+                  <!-- Check for error -->
+                  {% if errorIllnessEndYear %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="illnessEnd-year" name="illnessEnd-year" type="text" inputmode="illnessEndYear">
+                  {% else %}
                   <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="illnessEnd-year" name="illnessEnd-year" type="text" inputmode="illnessEndYear">
+                  {% endif %} 
                 </div>
               </div>
             </div>
           </fieldset>
         </div>
-        {% endif %}
 
         {{ govukButton({
               text: "Continue"

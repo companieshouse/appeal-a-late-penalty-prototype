@@ -60,6 +60,7 @@ Check your answers before submitting your appeal
           Reason for appeal
         </h2>
 
+        <!-- ****************** Illness ****************** -->
         {% if data['appealReason'] == 'illness' %}
         <h3 class="govuk-heading-m">
           Illness
@@ -164,6 +165,8 @@ Check your answers before submitting your appeal
             </dd>
           </div>
         </dl>
+
+        <!-- ****************** Other reason ****************** -->
         {% else %}
         <h3 class="govuk-heading-m">
           Other

@@ -15,6 +15,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+      <!-- Check for error -->
       {% if errorEmail or errorPassword %}
         {{ govukErrorSummary({
             titleText: "There is a problem",
@@ -25,61 +26,43 @@
       <p class="govuk-body">You cannot use your WebFiling details to sign in. You must sign in to or register a Companies House account.</p>
 
       <form action="{{currentUrl}}" method="post">
+
+        <!-- Check for error -->
         {% if errorEmail %}
-          {{ govukInput({
-            label: {
-              text: "Email address"
-            },
-            classes: "govuk-input--width-30",
-            id: "emailAddress",
-            value: data['emailAddress'],
-            type: "email",
-            name: "emailAddress",
-            autocomplete: "email",
-            errorMessage: {
-              text: "Enter your email address"
-            }
-          }) }}
+        <div class="govuk-form-group govuk-form-group--error">
         {% else %}
-          {{ govukInput({
-            label: {
-              text: "Email address"
-            },
-            classes: "govuk-input--width-30",
-            type: "email",
-            autocomplete: "email",
-            id: "emailAddress",
-            value: data['emailAddress'],
-            name: "emailAddress"
-          }) }}
-        {% endif %}
-        
+        <div class="govuk-form-group">
+        {% endif %} 
+          <label class="govuk-label" for="emailAddress">
+            Email address
+          </label>
+          <!-- Check for error -->
+          {% if errorEmail %}
+          <p id="emailAddress-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter your email address
+          </p>
+          {% endif %} 
+          <input class="govuk-input govuk-input--width-30" id="emailAddress" name="emailAddress" type="text">
+        </div>
+      
+        <!-- Check for error -->
         {% if errorPassword %}
-          {{ govukInput({
-            label: {
-              text: "Password"
-            },
-            classes: "govuk-input--width-30",
-            id: "password",
-            value: data['password'],
-            name: "password",
-            type: "password",
-            errorMessage: {
-              text: "Enter your password"
-            }
-          }) }}
+        <div class="govuk-form-group govuk-form-group--error">
         {% else %}
-          {{ govukInput({
-            label: {
-              text: "Password"
-            },
-            classes: "govuk-input--width-30",
-            id: "password",
-            value: data['password'],
-            name: "password",
-            type: "password"
-          }) }}
-        {% endif %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <label class="govuk-label" for="password">
+            password
+          </label>
+          <!-- Check for error -->
+          {% if errorPassword %}
+          <p id="password-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter your password
+          </p>
+          {% endif %} 
+          <input class="govuk-input govuk-input--width-30" id="password" name="password" type="text">
+        </div>
+
         {{ govukButton({
         text: "Sign in"
         }) }}

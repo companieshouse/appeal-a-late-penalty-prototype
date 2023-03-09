@@ -14,6 +14,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <!-- Check for error -->
       {% if errorCompany or errorRef %}
       {{ govukErrorSummary({
           titleText: "There is a problem",
@@ -27,65 +28,51 @@
 
       <form action="{{currentUrl}}" method="post">
 
+        <!-- Check for error -->
         {% if errorCompany %}
-        {{ govukInput({
-          label: {
-            text: "Company number"
-          },
-          hint: {
-            text: "This is the 8-character reference issued by Companies House when the company was set up."
-          },
-          classes: "govuk-input--width-10",
-          id: "company-number",
-          name: "companyNumber",
-          value: companyNumber,
-          errorMessage: {
-            text: "You must enter as company number"}
-        }) }}
+        <div class="govuk-form-group govuk-form-group--error">
         {% else %}
-          {{ govukInput({
-            label: {
-              text: "Company number"
-            },
-            hint: {
-              text: "This is the 8-character reference issued by Companies House when the company was set up."
-            },
-            classes: "govuk-input--width-10",
-            id: "company-number",
-            name: "companyNumber",
-            value: companyNumber
-          }) }}
-        {% endif %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label" for="companyNumber">
+              Company number
+            </label>
+          </h1>
+          <div id="companyNumber-hint" class="govuk-hint">
+            This is the 8-character reference issued by Companies House when the company was set up.
+          </div>
+          <!-- Check for error -->
+          {% if errorCompany %}
+          <p id="companyNumber-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> You must enter as company number
+          </p>
+          {% endif %} 
+          <input class="govuk-input govuk-input--width-10" id="companyNumber" name="companyNumber" type="text" aria-describedby="companyNumber-hint">
+        </div>
 
+        <!-- Check for error -->
         {% if errorRef %}
-        {{ govukInput({
-          label: {
-            text: "Reference number"
-          },
-          hint: {
-            text: "Enter the full penalty reference. It will be in the format A0000000, PEN1A/00000000 or PEN2A/00000000."
-          },
-          classes: "govuk-input--width-20",
-          id: "penalty-reference",
-          name: "penaltyReference",
-          value: penaltyReference,
-          errorMessage: {
-            text: "You must enter as reference number"}
-        }) }}
+        <div class="govuk-form-group govuk-form-group--error">
         {% else %}
-        {{ govukInput({
-          label: {
-            text: "Reference number"
-          },
-          hint: {
-            text: "Enter the full penalty reference. It will be in the format A0000000, PEN1A/00000000 or PEN2A/00000000."
-          },
-          classes: "govuk-input--width-20",
-          id: "penalty-reference",
-          name: "penaltyReference",
-          value: penaltyReference
-        }) }}
-        {% endif %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label" for="penaltyReference">
+              Reference number
+            </label>
+          </h1>
+          <div id="penaltyReference-hint" class="govuk-hint">
+            Enter the full penalty reference. It will be in the format A0000000, PEN1A/00000000 or PEN2A/00000000.
+          </div>
+          <!-- Check for error -->
+          {% if errorRef %}
+          <p id="penaltyReference-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> You must enter as reference number
+          </p>
+          {% endif %} 
+          <input class="govuk-input govuk-input--width-20" id="penaltyReference" name="penaltyReference" type="text" aria-describedby="penaltyReference-hint">
+        </div>
 
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">

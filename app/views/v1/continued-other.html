@@ -14,6 +14,7 @@ Appeal due to ill health: Is the person still ill?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <!-- Check for error -->
       {% if errorContinuedOther %}
         {{ govukErrorSummary({
           titleText: "There is a problem",
@@ -22,44 +23,24 @@ Appeal due to ill health: Is the person still ill?
       {% endif %}
       <form action="{{currentUrl}}" method="post">
 
-      {% if errorContinuedOther %}
-      <div class="govuk-form-group govuk-form-group--error">
+        <!-- Check for error -->
+        {% if errorContinuedOther %}
+        <div class="govuk-form-group govuk-form-group--error">
+        {% else %}
+        <div class="govuk-form-group">
+        {% endif %} 
         <fieldset class="govuk-fieldset" aria-describedby="continuedOther-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading">
               Is it still ongoing?
             </h1>
           </legend>
-          <div id="continuedOther-hint" class="govuk-hint">
-            You told us it started on {{ data['otherStart-day'] }} {{ data['otherStart-month'] | displayMonth }} {{ data['otherStart-year'] }}
-          </div>
-          <p id="continuedOther-error" class="govuk-error-message">
+          <!-- Check for error -->
+          {% if errorContinuedOther %}
+          <p id="continuedIllness-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error:</span> You must select if the person is still ill
           </p>
-          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="continuedOther" name="continuedOther" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="continuedOther">
-                Yes
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="continuedOther-2" name="continuedOther" type="radio" value="no">
-              <label class="govuk-label govuk-radios__label" for="continuedOther-2">
-                No
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-      {% else %}  
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="continuedOther-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-            <h1 class="govuk-fieldset__heading">
-              Is it still ongoing?
-            </h1>
-          </legend>
+          {% endif %} 
           <div id="continuedOther-hint" class="govuk-hint">
             You told us it started on {{ data['otherStart-day'] }} {{ data['otherStart-month'] | displayMonth }} {{ data['otherStart-year'] }}
           </div>
@@ -79,8 +60,6 @@ Appeal due to ill health: Is the person still ill?
           </div>
         </fieldset>
       </div>
-
-      {% endif %}
 
         {{ govukButton({
               text: "Continue"

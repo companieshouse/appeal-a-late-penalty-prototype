@@ -265,9 +265,9 @@ router.post('/v1/illness-start-date', function (req, res) {
   if (dayHasError || monthHasError || yearHasError) {
     // Re-show page with error value as true so errors will show
     res.render('v1/illness-start-date', {
-      errorday: dayHasError,
-      errorMonth: monthHasError,
-      errorYear: yearHasError,
+      errorIllnessStartDay: dayHasError,
+      errorIllnessStartMonth: monthHasError,
+      errorIllnessStartYear: yearHasError,
       errorList: errors
     })
   } else {
@@ -325,9 +325,9 @@ if (req.session.data['illnessEnd-year'] === '') {
 if (dayHasError || monthHasError || yearHasError) {
   // Re-show page with error value as true so errors will show
   res.render('v1/illness-end-date', {
-    errorday: dayHasError,
-    errorMonth: monthHasError,
-    errorYear: yearHasError,
+    errorIllnessEndDay: dayHasError,
+    errorIllnessEndMonth: monthHasError,
+    errorIllnessEndYear: yearHasError,
     errorList: errors
   })
 } else {
@@ -590,9 +590,9 @@ router.post('/v1/other-start-date', function (req, res) {
   if (dayHasError || monthHasError || yearHasError) {
     // Re-show page with error value as true so errors will show
     res.render('v1/other-start-date', {
-      errorday: dayHasError,
-      errorMonth: monthHasError,
-      errorYear: yearHasError,
+      errorOtherStartDay: dayHasError,
+      errorOtherStartMonth: monthHasError,
+      errorOtherStartYear: yearHasError,
       errorList: errors
     })
   } else {
@@ -685,9 +685,9 @@ router.post('/v1/other-end-date', function (req, res) {
   if (dayHasError || monthHasError || yearHasError) {
     // Re-show page with error value as true so errors will show
     res.render('v1/other-end-date', {
-      errorday: dayHasError,
-      errorMonth: monthHasError,
-      errorYear: yearHasError,
+      errorOtherEndDay: dayHasError,
+      errorOtherEndMonth: monthHasError,
+      errorOtherEndYear: yearHasError,
       errorList: errors
     })
   } else {
