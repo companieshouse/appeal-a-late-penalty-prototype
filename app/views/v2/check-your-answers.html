@@ -1,0 +1,291 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Check your answers before submitting your appeal
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+          Check your appeal
+        </h1>
+
+        <h3 class="govuk-heading-m">
+          Penalty details
+        </h3>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Company name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              LARGE COMPANY LTD
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Company number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['companyNumber'] }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Late Filing Penalty ({{ data['penaltyReference'] }})
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Contact email
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['emailAddress'] }}
+            </dd>
+          </div>
+        </dl>
+
+        <h2 class="govuk-heading-l">
+          Reason for appeal
+        </h2>
+
+        <!-- ****************** Illness ****************** -->
+        {% if data['appealReason'] == 'illness' %}
+        <h3 class="govuk-heading-m">
+          Illness
+        </h3>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Who was ill
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['illPerson'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="who-was-ill">
+                Change<span class="govuk-visually-hidden"> Who was ill</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Illness start date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['illnessStart-day'] }} 
+              {{ data['illnessStart-month'] | displayMonth }} 
+              {{ data['illnessStart-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="illness-start-date">
+                Change<span class="govuk-visually-hidden"> illness start date</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Illness end date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['illnessEnd-day'] }} 
+              {{ data['illnessEnd-month'] | displayMonth }} 
+              {{ data['illnessEnd-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="illness-end-date">
+                Change<span class="govuk-visually-hidden"> illness end date</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Your name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="name">
+                Change<span class="govuk-visually-hidden">name</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Relationship
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['relationship'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="relationship">
+                Change<span class="govuk-visually-hidden">Relationship</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Further information
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['illnessInformation'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="illness-information">
+                Change<span class="govuk-visually-hidden">illness-information</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Supporting documents
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list govuk-list--bullet">
+                <li><a href="#" class="govuk-link govuk-link--no-visited-state">file_1.doc</a></li>
+              </ul>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="evidence-upload">
+                Change<span class="govuk-visually-hidden">detailedDescription</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <!-- ****************** Other reason ****************** -->
+        {% else %}
+        <h3 class="govuk-heading-m">
+          Other
+        </h3>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Your name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="name">
+                Change<span class="govuk-visually-hidden">name</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Relationship
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['relationship'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="relationship">
+                Change<span class="govuk-visually-hidden">relationship</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Reason
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['otherReason'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="reason-other">
+                Change<span class="govuk-visually-hidden">reason</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Further information
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['detailedDescription'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="reason-other">
+                Change<span class="govuk-visually-hidden">detailedDescription</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Start date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['otherStart-day'] }} 
+              {{ data['otherStart-month'] | displayMonth }} 
+              {{ data['otherStart-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="other-start-date">
+                Change<span class="govuk-visually-hidden"> other start date</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              End date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['otherEnd-day'] }} 
+              {{ data['otherEnd-month'] | displayMonth }} 
+              {{ data['otherEnd-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="other-end-date">
+                Change<span class="govuk-visually-hidden"> other end date</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['uploaded'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Supporting documents
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list govuk-list--bullet">
+                <li><a href="#" class="govuk-link govuk-link--no-visited-state">file_1.doc</a></li>
+              </ul>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="evidence-upload">
+                Change<span class="govuk-visually-hidden">supportingDocs</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+        </dl>
+        {% endif %}
+
+        <h2 class="govuk-heading-m">Submit your appeal</h2>
+        <p>
+          By submitting this appeal you are confirming that, to the best of your knowledge, the details you are providing are true.
+        </p>
+
+        <form action="{{currentUrl}}" method="post">
+          {{ govukButton({
+            text: "Confirm and submit appeal"
+          }) }}
+        </form>
+
+    </div>
+  </div>
+{% endblock %}

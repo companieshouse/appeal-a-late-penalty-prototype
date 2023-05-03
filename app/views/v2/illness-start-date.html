@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to ill health: Tell us when the illness started
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!-- Check for error -->
+      {% if errorIllnessStartDay or errorIllnessStartMonth or errorYIllnessStartear %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+      <form action="{{currentUrl}}" method="post">
+        
+        <!-- Check for error -->
+        {% if errorIllnessStartDay or errorIllnessStartMonth or errorYIllnessStartear %}
+        <div class="govuk-form-group govuk-form-group--error">
+        {% else %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="illnessStart-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                When did the illness start?
+              </h1>
+            </legend>
+            <!-- Check for error -->
+            {% if errorIllnessStartDay or errorIllnessStartMonth or errorIllnessStartYear %}
+            <p id="illnessStart-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> The date must include a day, month and year
+            </p>
+            {% endif %} 
+            <div id="illnessStart-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="illnessStart">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessStart-day">
+                    Day
+                  </label>
+                  <!-- Check for error -->
+                  {% if errorIllnessStartDay %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessStart-day" name="illnessStart-day" type="text" inputmode="illnessStartDay">
+                  {% else %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessStart-day" name="illnessStart-day" type="text" inputmode="illnessStartDay">
+                  {% endif %} 
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessStart-month">
+                    Month
+                  </label>
+                  <!-- Check for error -->
+                  {% if errorIllnessStartMonth %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="illnessStart-month" name="illnessStart-month" type="text" inputmode="illnessStartMonth">
+                  {% else %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="illnessStart-month" name="illnessStart-month" type="text" inputmode="illnessStartMonth">
+                  {% endif %} 
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="illnessStart-year">
+                    Year
+                  </label>
+                  <!-- Check for error -->
+                  {% if errorIllnessStartYear %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="illnessStart-year" name="illnessStart-year" type="text" inputmode="illnessStartYear">
+                  {% else %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="illnessStart-year" name="illnessStart-year" type="text" inputmode="illnessStartYear">
+                  {% endif %} 
+
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+             text: "Continue"
+            }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

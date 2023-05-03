@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Add documents to support your application
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Upload documents to support your application
+      </h1>
+
+      <p class="govuk-body">Documents should:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>show evidence that supports your appeal, such as a doctor's note or an insurance claim</li>
+        <li>show the full name of the person or company affected</li>
+        <li>show any relevant dates to support your appeal</li>
+      </ul>
+            
+      <p class="govuk-body">Only upload documents that relate directly to your appeal.</p>
+
+      <p class="govuk-body">Do not upload</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>copies of penalty notices or default notices</li>
+        <li>bank statements or other financial information</li>
+        <li>HMRC correspondence</li>
+        <li>copies of documents (or any other information) available on the public record</li>
+        <li>birth or death certificates</li>
+        <li>photographs</li>
+      </ul>
+
+      <div class="govuk-!-padding-bottom-7 govuk-!-padding-top-3">      
+        <p class="govuk-body">Upload a document</p>
+        <button class="upload_button" onclick="upload_file()">
+          Choose file
+        </button>
+        <span class="govuk-body">No file chosen</span>
+      </div>
+
+
+      <div class="file-upload govuk-visually-hidden" id="uploaded_file">
+        <p><a href="" class="govuk-link govuk-link--no-visited-state">file_1.doc</a>
+          <a href="" class="govuk-link govuk-link--no-visited-state" style="float: right;" onclick="remove_file()">Remove</a>
+        </p>
+      </div>
+
+      <form action="{{currentUrl}}" method="post">
+        <input type="hidden" name="file_uploaded" id="file_uploaded" value="false" />
+          {{ govukButton({
+            text: "Continue",
+            href: continueLink
+          }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

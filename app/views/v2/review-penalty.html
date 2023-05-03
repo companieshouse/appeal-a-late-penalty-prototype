@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Review penalty details
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Penalty details for LARGE COMPANY</h1>
+
+    <h2 class="govuk-heading-m">
+      Accounts period made up to 30 April 2016
+    </h2>
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption">Penalty reference: {{ data['penaltyReference'] }}</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col">Fee</th>
+          <th class="govuk-table__header" scope="col">Date</th>
+          <th class="govuk-table__header" scope="col">Fee Amount</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Late filing penalty</td>
+          <td class="govuk-table__cell">'15 April 2015'</td>
+          <td class="govuk-table__cell">£150</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td colspan="2" class="table-total govuk-table__cell">
+            Total:
+          </td>
+          <td class="govuk-table__cell">
+            £150
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    {{ govukButton({
+      text: "Continue",
+      href: "choose-reason"
+    }) }}
+  </div>
+</div>
+
+{% endblock %}

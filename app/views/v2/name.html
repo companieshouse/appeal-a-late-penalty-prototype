@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to ill health: How did this affect your ability to file on time?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <!-- Check for error -->
+    {% if errorName %}
+    {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">What is your name?</h1>
+      <form action="{{currentUrl}}" method="post">
+
+        <!-- Check for error -->
+        {% if errorName %}
+        <div class="govuk-form-group govuk-form-group--error">
+        {% else %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <!-- Check for error -->
+          {% if errorName %}
+          <p id="name-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter your name
+          </p>
+          {% endif %} 
+          <input class="govuk-input" id="name" name="name" type="text">
+        </div>
+
+        {{ govukButton({
+              text: "Continue"
+            }) }}
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+
+{% endblock %}

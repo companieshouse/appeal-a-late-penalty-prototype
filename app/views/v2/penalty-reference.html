@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Tell us the penalty details
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!-- Check for error -->
+      {% if errorCompany or errorRef %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl">
+        What are the penalty details?
+      </h1>
+
+      <form action="{{currentUrl}}" method="post">
+
+        <!-- Check for error -->
+        {% if errorCompany %}
+        <div class="govuk-form-group govuk-form-group--error">
+        {% else %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label" for="companyNumber">
+              Company number
+            </label>
+          </h1>
+          <div id="companyNumber-hint" class="govuk-hint">
+            This is the 8-character reference issued by Companies House when the company was set up.
+          </div>
+          <!-- Check for error -->
+          {% if errorCompany %}
+          <p id="companyNumber-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> You must enter as company number
+          </p>
+          {% endif %} 
+          <input class="govuk-input govuk-input--width-10" id="companyNumber" name="companyNumber" type="text" aria-describedby="companyNumber-hint">
+        </div>
+
+        <!-- Check for error -->
+        {% if errorRef %}
+        <div class="govuk-form-group govuk-form-group--error">
+        {% else %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label" for="penaltyReference">
+              Reference number
+            </label>
+          </h1>
+          <div id="penaltyReference-hint" class="govuk-hint">
+            Enter the full penalty reference. It will be in the format A0000000, PEN1A/00000000 or PEN2A/00000000.
+          </div>
+          <!-- Check for error -->
+          {% if errorRef %}
+          <p id="penaltyReference-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> You must enter as reference number
+          </p>
+          {% endif %} 
+          <input class="govuk-input govuk-input--width-20" id="penaltyReference" name="penaltyReference" type="text" aria-describedby="penaltyReference-hint">
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Help with company number and penalty reference number
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+          <p>Your company number and penalty reference will be on your penalty notice letter.</p>
+          <p>Some penalty notices will show the company number and reference number at the bottom. 
+            The penalty reference will be in the format A00000000</p>
+          <p>Other penalty notices will show the company number and reference at the top. The 
+            penalty reference will be in the format PEN1A/00000000 or PEN2A/00000000.</p>
+            <img src='/public/images/penalty-notice-image.png' class='call-out-image' alt=''/>
+          </div>
+        </details>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

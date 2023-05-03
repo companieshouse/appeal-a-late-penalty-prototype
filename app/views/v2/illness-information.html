@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to ill health: How did this affect your ability to file on time?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    {% if errorIllnessInformation %}
+    {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">How did this affect your ability to file on time?</h1>
+
+        <p class="govuk-body">You should include:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>any relevant dates - for example, the dates that the illness began and ended</li>
+          <li>name of the person who was ill, and their relationship to the company</li>
+        </ul>
+        <p class="govuk-body">If the person who usually files the accounts was not able to, 
+          tell us why no one else could file them.</p>
+        <p class="govuk-body">If you were given advice by Companies House, include details of
+           when and how you contacted us.</p>
+        <p class="govuk-body">Anything you tell us to support your appeal will be kept confidential.</p>
+
+        <form action="{{currentUrl}}" method="post">
+
+          {% if errorIllnessInformation %}
+          <div class="govuk-form-group govuk-form-group--error">
+            <p id="illnessInformation-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter how this affected your ability to file on time?
+            </p>
+            <textarea class="govuk-textarea" id="illnessInformation" name="illnessInformation" rows="8" value="illnessInformation"></textarea>
+          </div>
+          {% else %}
+          <div class="govuk-form-group">
+            <textarea class="govuk-textarea" id="illnessInformation" name="illnessInformation" rows="8" value="illnessInformation"></textarea>
+          </div>
+          {% endif %}
+
+        {{ govukButton({
+              text: "Continue"
+            }) }}
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+
+{% endblock %}

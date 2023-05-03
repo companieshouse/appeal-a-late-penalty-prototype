@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Appeal due to other reason: Tell us when the other reason started
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "../includes/phase-banner.html" %}
+  {% include "../includes/account-banner.html" %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!-- Check for error -->
+      {% if errorOtherEndDay or errorOtherEndMonth or errorOtherEndYear %}
+      {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+      <form action="{{currentUrl}}" method="post">
+
+        <!-- Check for error -->
+        {% if errorOtherEndDay or errorOtherEndMonth or errorOtherEndYear %}
+        <div class="govuk-form-group govuk-form-group--error">
+        {% else %}
+        <div class="govuk-form-group">
+        {% endif %} 
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="otherEnd-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                When did it end?
+              </h1>
+            </legend>
+            <!-- Check for error -->
+            {% if errorOtherEndDay or errorOtherEndMonth or errorOtherEndYear %}
+            <p id="otherStart-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> The date must include a day, month and year
+            </p>
+            {% endif %} 
+            <div id="otherEnd-hint" class="govuk-hint">
+              Tell us when the reason for the appeal ended.
+            </div>
+            <div class="govuk-date-input" id="otherEnd">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherEnd-day">
+                    Day
+                  </label>
+                  <!-- Check for error -->
+                  {% if errorOtherEndDay %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="otherEnd-day" name="otherEnd-day" type="text" inputmode="otherEndDay">
+                  {% else %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherEnd-day" name="otherEnd-day" type="text" inputmode="otherEndDay">
+                  {% endif %} 
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherEnd-month">
+                    Month
+                  </label>
+                  <!-- Check for error -->
+                  {% if errorOtherEndMonth %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="otherEnd-month" name="otherEnd-month" type="text" inputmode="otherEndMonth">
+                  {% else %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherEnd-month" name="otherEnd-month" type="text" inputmode="otherEndMonth">
+                  {% endif %} 
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherEnd-year">
+                    Year
+                  </label>
+                  <!-- Check for error -->
+                  {% if errorOtherEndYear %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="otherEnd-year" name="otherEnd-year" type="text" inputmode="otherEndYear">
+                  {% else %}
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="otherEnd-year" name="otherEnd-year" type="text" inputmode="otherEndYear">
+                  {% endif %} 
+
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+             text: "Continue"
+            }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

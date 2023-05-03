@@ -1,0 +1,120 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Appeal a late filing penalty
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk/browse/business">Business and self-employed</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk/browse/business/limited-company">Running a limited company</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {% if serviceName %}
+          {{ serviceName }}
+        {% endif %}
+      </h1>
+      <p class="govuk-body">Use this service to appeal a penalty from Companies House for 
+        filing a company’s annual accounts late.</p>
+      
+      <div class="govuk-inset-text">
+        You should <a href="https://www.gov.uk/pay-a-penalty-for-filing-company-accounts-late" target="_blank">
+          pay the late filing penalty</a> even if you want to appeal, unless there are exceptional reasons, such 
+          as a fire destroying records.
+      </div>
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p class="govuk-body">You'll need:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the company number</li>
+        <li>the penalty reference</li>
+        <li>the reason for the appeal</li>
+        <li>any documents that support the appeal</li>
+      </ul>
+      
+      <p class="govuk-body">Any documents you upload, such as a doctor’s note or an insurance claim, 
+        must include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the full name of the person or company affected</li>
+        <li>any relevant dates</li>
+      </ul>
+            
+      <p class="govuk-body">The maximum file size for each document is 4MB.</p>
+      
+      <h2 class="govuk-heading-m">Start your appeal</h2>
+
+      <p class="govuk-body">It can take up to 30 minutes to apply. You’ll be signed out after 60 
+        minutes if you pause your application and your answers will not be saved.</p>
+      
+      <div class="govuk-inset-text">
+        You can only appeal once against a penalty notice.
+      </div>
+      
+      {{ govukButton({
+        text: "Start now",
+        href: "signin",
+        isStartButton: true
+      }) }}
+
+      <p>
+        <a href="https://www.gov.uk/government/publications/late-filing-penalties/late-filing-penalties#appealing" target="_blank">
+          Read the guidance on appealing a penalty.</a>
+      </p>
+
+      <h2 class="govuk-heading-m">After you appeal</h2>
+
+      <p class="govuk-body">Wait for Companies House to contact you with their decision.</p>
+
+      <p class="govuk-body">If you have not paid the penalty, you may be contacted by a debt recovery agency or 
+        solicitors asking for payment. Reply to them explaining you have appealed the penalty.</p>
+
+      <h2 class="govuk-heading-m">Other ways to appeal</h2>
+
+      <p class="govuk-body">You can also appeal a penalty by email or post.</p>
+
+      <h3 class="govuk-heading-s">Appeal by email</h3>
+
+      <p class="govuk-body">Send your email with any supporting evidence attached to Companies House.</p>
+
+      <p class="govuk-body">Companies House enquiries<br>
+        <a href="enquiries@companieshouse.gov.uk" target="_blank">
+          enquiries@companieshouse.gov.uk</a></p>
+
+      <h3 class="govuk-heading-s">Appeal by post</h3>
+
+      <p class="govuk-body">Send your letter and any supporting evidence to Companies House.</p>
+
+      <p class="govuk-body">Late filing penalties<br>
+        PO Box 710<br>
+        Crown Way<br>
+        Cardiff<br>
+        CF14 3UZ</p>
+
+      <h3 class="govuk-heading-s">If you cannot appeal by email or post</h3>
+
+      <p class="govuk-body">You can phone Companies House if you cannot appeal by email or post.</p>
+
+      <p class="govuk-body">Telephone: 0303 1234 500<br>
+        Monday to Friday, 8am to 6pm<br>
+        <a href="https://www.gov.uk/call-charges" target="_blank">
+          Find out about call charges</a><br>
+       </p>
+
+
+  </div>
+{% endblock %}
